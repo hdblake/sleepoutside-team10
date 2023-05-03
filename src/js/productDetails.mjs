@@ -1,17 +1,17 @@
 import { findProductById } from "./productData.mjs";
 import { setLocalStorage } from "./utils.mjs";
 
-let product = {}
+let product = {};
 
 export default async function productDetails(productId) {
-    product = await findProductById(productId)
-    renderProductDetails()
-    document.getElementById("addToCart").addEventListener("click", addToCartHandler);
+    product = await findProductById(productId);
+    renderProductDetails();
+    document.getElementById("addToCart").addEventListener("click", addToCart);
     
     console.log(findProductById(productId));
 }
 
-function addToCartHandler() {
+function addToCart() {
     setLocalStorage("so-cart", product);
 }
 
