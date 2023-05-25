@@ -3,5 +3,5 @@ import { getParam, loadHeaderFooter } from '../js/utils.mjs';
 
 loadHeaderFooter();
 
-const productId = getParam("category");
-productList(".product-list", productId);
+const category = getParam("category");
+productList(".product-list", category);

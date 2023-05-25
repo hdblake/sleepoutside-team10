@@ -41,7 +41,7 @@ export function renderListWithTemplate(
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
 }
 
-export async function renderWithTemplate( templateFn, parentElement, data, position = "afterbegin", clear = true) {
+export async function renderWithTemplate( templateFn, parentElement, data, callback, position = "afterbegin", clear = true) {
   if (clear) {
     parentElement.innerHTML = "";
   }
