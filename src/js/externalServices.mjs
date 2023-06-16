@@ -1,5 +1,5 @@
 const baseURL = import.meta.env.VITE_SERVER_URL;
-
+// const baseURL = "https://wdd330-backend.onrender.com/";
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -31,4 +31,17 @@ export async function checkout(payload) {
     body: JSON.stringify(payload),
   };
   return await fetch(baseURL + "checkout/", options).then(convertToJson);
+}
+
+
+export async function loginRequest(user) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  };
+  const response = await fetch(baseURL + "login", options).then(convertToJson);
+  return response.accessToken;
 }
