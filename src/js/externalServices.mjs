@@ -1,9 +1,12 @@
-const baseURL = "https://wdd330-backend.onrender.com/";
+const baseURL = import.meta.env.VITE_SERVER_URL;
+// const baseURL = "https://wdd330-backend.onrender.com/";
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
   } else {
-    throw new Error("Bad Response");
+    return res.json().then(jsonResponse => {
+      throw { name: 'servicesError', message: jsonResponse };
+    })
   }
 }
 
