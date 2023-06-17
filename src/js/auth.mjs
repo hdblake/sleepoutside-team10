@@ -1,5 +1,6 @@
 import { loginRequest } from "./externalServices.mjs";
 import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
+import jwt_decode from "jwt-decode";
 
 const tokenKey = "so-token";
 
@@ -32,7 +33,11 @@ export async function login(creds, redirect = "/") {
   try {
     const token = await loginRequest(creds);
     setLocalStorage(tokenKey, token);
-    window.location = redirect;
+    if (!checkLogin()) {
+      window.location = redirect;
+    } else {
+      window.location = `/orders/index.html`;
+    }
   } catch (err) {
     alertMessage(err.message.message);
   }
